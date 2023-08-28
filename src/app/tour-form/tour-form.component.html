@@ -1,0 +1,133 @@
+<div class="card">
+  <div class="bg-dark text-white card card-body">
+    <h3>Add new tour to offer</h3>
+  </div>
+  <div class="container overflow-hidden">
+    <form (ngSubmit)="onSubmit()" #tourForm="ngForm">
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <label class="col-form-label" for="departureDate">Departure date</label>
+          <input class="form-control" type="date" [(ngModel)]="tour.departureDate" class="form-control"
+            id="departureDate" name="departureDate" required>
+        </div>
+
+        <div class="col-md-4">
+          <label class="col-form-label" for="fromCity">From city</label>
+          <select class="form-control" #fromCity id="fromCity" name="fromCity" [(ngModel)]="tour.fromCity"
+            (change)="fromCityChanges()" required>
+            <option [ngValue]="undefined">Choose city</option>
+            <option *ngFor="let city of cities" [ngValue]="city">
+              {{city.name}}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="col-form-label" for="fromCity">From airport</label>
+          <select class="form-control" id="fromAirport" name="fromAirport" [(ngModel)]="tour.fromAirport"
+            [disabled]="!isFromCity" required>
+            <option [ngValue]="undefined">Choose airport</option>
+            <option *ngFor="let airport of airportsFrom" [ngValue]="airport">
+              {{airport.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+          <label class="col-form-label" for="returnDate">Return date</label>
+          <input class="form-control" type="date" [(ngModel)]="tour.returnDate" class="form-control" id="returnDate"
+            name="returnDate" required>
+        </div>
+
+        <div class="col-md-4">
+          <label class="col-form-label" for="fromCity">To city</label>
+          <select class="form-control" #toCity id="toCity" name="toCity" [(ngModel)]="tour.toCity"
+            (change)="toCityChanges()" required>
+            <option [ngValue]="undefined">Choose city</option>
+            <option *ngFor="let city of cities" [ngValue]="city">
+              {{city.name}}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="col-form-label" for="fromCity">To airport</label>
+          <select class="form-control" id="toAirport" name="toAirport" [(ngModel)]="tour.toAirport"
+            [disabled]="!isToCity" required>
+            <option [ngValue]="undefined">Choose airport</option>
+            <option *ngFor="let airport of airportsTo" [ngValue]="airport">
+              {{airport.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <label class="col-form-label" for="hotel">Hotel</label>
+          <select class="form-control" id="hotel" name="hotel" [(ngModel)]="tour.hotel" [disabled]="!isToCity" required>
+            <option [ngValue]="undefined">Choose hotel</option>
+            <option *ngFor="let hotel of hotels" [ngValue]="hotel">
+              {{hotel.name}}, {{hotel.standard}}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="col-form-label" for="typeOfBoard">Type of Board</label>
+          <select class="form-control" id="typeOfBoard" name="typeOfBoard" [(ngModel)]="tour.typeOfBoard" required>
+            <option [ngValue]="undefined">Choose type of board</option>
+            <option *ngFor="let typeOfBoard of typesOfBoard" [ngValue]="typeOfBoard">
+              {{typeOfBoard}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <label class="col-form-label" for="priceForAdult">Price for adult</label>
+          <input class="form-control" type="number" id="priceForAdult" name="priceForAdult"
+            [(ngModel)]="tour.priceForAdult" required>
+        </div>
+
+        <div class="col-md-3">
+          <label class="col-form-label" for="numberOfAdults">Number of adults</label>
+          <input class="form-control" type="number" id="numberOfAdults" name="numberOfAdults"
+            [(ngModel)]="tour.numberOfAdults" required>
+        </div>
+
+        <div class="col-md-3">
+          <label class="col-form-label" for="priceForKid">Price for kid</label>
+          <input class="form-control" type="number" id="priceForKid" name="priceForKid" [(ngModel)]="tour.priceForKid"
+            required>
+        </div>
+
+        <div class="col-md-3">
+          <label class="col-form-label" for="numberOfKids">Number of kids</label>
+          <input class="form-control" type="number" id="numberOfKids" name="numberOfKids"
+            [(ngModel)]="tour.numberOfKids" required>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-12">
+          <div class="form-check">
+
+          <input class="form-check-input mr-4" type="checkbox" id="isPromoted" name="isPromoted"
+            [(ngModel)]="tour.isPromoted" />
+          <label class="form-check-label" for="isPromoted">Promoted</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-12">
+          <button type="submit" [disabled]="!tourForm.form.valid" class="btn btn-info">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

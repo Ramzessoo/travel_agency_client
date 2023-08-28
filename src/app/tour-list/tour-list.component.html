@@ -1,0 +1,71 @@
+<div *ngIf="title != '' " class="bg-dark text-white card card-body">
+    <h3>{{title}}</h3>
+</div>
+
+<div *ngIf="bought" class="alert alert-info alert-dismissible fade  show" role="alert">
+    <strong>Congratulation !</strong> You've got a flight to {{boughtTour.toCity.name}} on {{boughtTour.departureDate}} :-).
+    <button (click)="closeBoughtAlert()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card my-5" *ngFor="let tour of tours;let i = index">
+
+    <div class="card-body" (click)="clicked(i)">
+        <form (ngSubmit)="onSubmit(tour)">
+            <h4>{{tour.toCity.name}}</h4>
+            <strong>{{tour.departureDate}}</strong> to <strong>{{tour.returnDate}}</strong>
+            <div *ngIf="show === i">
+                <table>
+                    <tr>
+                        <td>From aiport: </td>
+                        <td>
+                            <a [routerLink]="['/byAirport', tour.fromAirport.iata]"
+                                class="link-info">{{tour.fromAirport.name}}</a>
+                            ( <a [routerLink]="['/byCity', tour.fromCity.id]"
+                                class="link-info">{{tour.fromCity.name}}</a>,
+                            <a [routerLink]="['/byCountry',tour.fromCity.country.id]"
+                                class="link-info">{{tour.fromCity.country.name}}</a>,
+                            <a [routerLink]="['/byContinent', tour.fromCity.country.continent.id]"
+                                class="link-info">{{tour.fromCity.country.continent.name}}</a> )
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>To aiport: </td>
+                        <td>
+                            <a [routerLink]="['/byAirport', tour.toAirport.iata]"
+                                class="link-info">{{tour.toAirport.name}}</a>
+                            (<a [routerLink]="['/byCity', tour.toCity.id]" class="link-info">{{tour.toCity.name}}</a>,
+                            <a [routerLink]="['/byCountry',tour.toCity.country.id]"
+                                class="link-info">{{tour.toCity.country.name}}</a>,
+                            <a [routerLink]="['/byContinent', tour.toCity.country.continent.id]"
+                                class="link-info">{{tour.toCity.country.continent.name}}</a>)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hotel: </td>
+                        <td>{{tour.hotel.name}}, {{tour.hotel.standard}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{tour.hotel.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Days on tour: </td>
+                        <td>{{tour.numberOfDays}}</td>
+                    </tr>
+                    <tr>
+                        <td>Boarding type: </td>
+                        <td>{{tour.typeOfBoard}}</td>
+                    </tr>
+                    <tr>
+                        <td>Adult: </td>
+                        <td>{{tour.priceForAdult}}$</td>
+                    </tr>
+                    <tr>
+                        <td>Child: </td>
+                        <td>{{tour.priceForKid}}$</td>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-info">Buy this tour</button>
+            </div>
+        </form>
+    </div>
+</div>
