@@ -67,11 +67,11 @@ export class TourFormComponent implements OnInit {
   onSubmit() {
     this.tourService.save(this.tour).subscribe(result => {
       this.tour = new Tour;
-      this.gotoTourList()
+      this.gotoMain()
     });
   }
 
-  gotoTourList() {
-    this.router.navigate(['/allTours']);
+  gotoMain() {
+    this.router.navigate(['']);
   }
 }
