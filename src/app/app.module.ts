@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TourLastMinuteComponent } from './tour-last-minute/tour-last-minute.component';
-// import { TourListComponent } from './tour-list/tour-list.component';
 import { TourByAiportComponent } from './tour-by-aiport/tour-by-aiport.component';
 import { TourByCityComponent } from './tour-by-city/tour-by-city.component';
 import { TourByContinentComponent } from './tour-by-continent/tour-by-continent.component';

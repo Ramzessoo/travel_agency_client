@@ -16,7 +16,9 @@ export class CityService {
   public findById(id: any): Observable<City> {
     return this.http.get<City>(this.citiesUrl + id);
   }
-
+ // public findForCountry(countryId: any): Observable<City[]> {
+   // return this.http.get<City[]>(this.citiesUrl + "countryId=" + countryId);
+ // }
   public getAll(): Observable<City[]> {
     return this.http.get<City[]>(this.citiesUrl);
   }
